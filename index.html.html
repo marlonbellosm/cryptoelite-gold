@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoElite10 Gold - Indicador Premium TradingView</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            border-color: #60a5fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #60a5fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #60a5fa;
+        }
+
+        .step p {
+            color: #94a3b8;
+        }
+
+        /* Color System */
+        .color-system {
+            padding: 80px 0;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .colors {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .color-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            min-width: 200px;
+            transition: all 0.3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .color-yellow {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .color-red {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .color-emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .color-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+        }
+
+        .price-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            padding: 50px;
+            border-radius: 30px;
+            border: 2px solid #3b82f6;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+        }
+
+        .price-card h3 {
+            font-size: 32px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 64px;
+            font-weight: bold;
+            color: #3b82f6;
+            margin: 30px 0;
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            color: #cbd5e1;
+        }
+
+        .price-features li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 80px 0;
+            background: rgba(15, 23, 42, 0.5);
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        .email {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .email:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(10, 14, 39, 0.8);
+            border-top: 2px solid #3b82f6;
+        }
+
+        footer p {
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🏆 CryptoElite10 Gold</div>
+                <a href="#contato" class="cta-button">Quero Acesso</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="floating">CryptoElite10 Gold</h1>
+            <p>O Indicador Premium que Transforma sua Operação</p>
+            <a href="#contato" class="cta-button" style="font-size: 20px; padding: 15px 40px;">COMEÇAR AGORA</a>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Precisão</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Monitoramento</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Indicadores</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Recursos Premium</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Sistema Visual Intuitivo</h3>
+                    <p>Cores simples que indicam exatamente quando COMPRAR, AGUARDAR ou VENDER. Sem complicações.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Sinais Precisos</h3>
+                    <p>Algoritmo avançado que filtra ruídos do mercado e entrega apenas os melhores momentos de entrada.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Análise em Tempo Real</h3>
+                    <p>Monitoramento contínuo do mercado para você nunca perder uma oportunidade lucrativa.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🐋</div>
+                    <h3>Movimentações Inteligentes</h3>
+                    <p>Identifica os melhores pontos de entrada seguindo o fluxo do dinheiro profissional.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Análise Profissional</h3>
+                    <p>Tecnologia de ponta que simplifica o trading e coloca você na direção certa do mercado.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Painel Completo</h3>
+                    <p>Todas as informações essenciais em um único painel visual. Tudo que você precisa para operar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="color-system">
+        <div class="container">
+            <h2 class="section-title">Sistema de Cores Simples</h2>
+            <div class="colors">
+                <div class="color-box color-blue">
+                    <div class="color-emoji">🔵</div>
+                    <h3>AZUL</h3>
+                    <p>Momento de COMPRAR<br>Tendência de alta forte</p>
+                </div>
+
+                <div class="color-box color-yellow">
+                    <div class="color-emoji">🟡</div>
+                    <h3>AMARELO</h3>
+                    <p>ALERTA de reversão<br>Perda de força</p>
+                </div>
+
+                <div class="color-box color-red">
+                    <div class="color-emoji">🔴</div>
+                    <h3>VERMELHO</h3>
+                    <p>Momento de VENDER<br>Tendência de baixa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Adquira o Acesso</h3>
+                    <p>Entre em contato e receba suas credenciais de acesso premium</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure no TradingView</h3>
+                    <p>Adicione o indicador em qualquer gráfico do TradingView</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Opere com Confiança</h3>
+                    <p>Siga as cores e sinais para tomar decisões mais assertivas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="preco">
+        <div class="container">
+            <h2 class="section-title">Investimento</h2>
+            <div class="price-card">
+                <h3>🏆 Acesso Premium</h3>
+                <div class="price">$ 14.99</div>
+                <p style="color: #94a3b8; margin-bottom: 30px;">Assinatura Mensal • Cancele quando quiser</p>
+                
+                <ul class="price-features">
+                    <li>Indicador CryptoElite10 Gold completo</li>
+                    <li>Sistema de cores intuitivo</li>
+                    <li>Sinais de alta precisão</li>
+                    <li>Análise em tempo real</li>
+                    <li>Painel de controle completo</li>
+                    <li>Alertas personalizados</li>
+                    <li>Suporte via email</li>
+                    <li>Atualizações incluídas</li>
+                </ul>
+
+                <a href="#contato" class="cta-button" style="display: inline-block; margin-top: 30px; font-size: 18px;">GARANTIR MINHA VAGA</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p style="color: #cbd5e1; font-size: 20px; margin-bottom: 30px;">
+                Pronto para elevar suas operações ao próximo nível?
+            </p>
+            <div class="contact-info">
+                📧 <a href="mailto:marlonbello7532@gmail.com" class="email">marlonbello7532@gmail.com</a>
+            </div>
+            <p style="color: #94a3b8; margin-top: 30px;">
+                Respondo em até 24 horas
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CryptoElite10 Gold. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 14px;">Trading envolve riscos. Opere com responsabilidade.</p>
+        </div>
+    </footer>
+</body>
+</html>
