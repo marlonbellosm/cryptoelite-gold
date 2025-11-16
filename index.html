@@ -432,7 +432,11 @@
             }
 
             .logo {
-                font-size: 18px;
+                font-size: 16px;
+            }
+
+            .logo span {
+                display: none;
             }
 
             .logo img {
@@ -441,8 +445,176 @@
             }
 
             .whatsapp-button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .header-content {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .colors {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .color-box {
+                width: 100%;
+            }
+
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-container {
+                padding: 25px 15px;
+            }
+
+            .panel-header h3 {
+                font-size: 24px;
+            }
+
+            .decision-example {
+                padding: 20px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exchanges-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .exchange-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .exchange-name {
+                font-size: 16px;
+            }
+
+            .exchanges-note {
+                padding: 20px;
                 font-size: 14px;
-                padding: 10px 20px;
+            }
+
+            .price-card {
+                padding: 30px 20px;
+            }
+
+            .price {
+                font-size: 48px;
+            }
+
+            .price-features {
+                font-size: 14px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 60px 0 !important;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .step h3 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .whatsapp-button {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .exchanges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header h3 {
+                font-size: 20px;
+            }
+
+            .panel-item-value {
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 42px;
+            }
+
+            .result-profit {
+                font-size: 24px;
+            }
+
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
             }
         }
 
@@ -667,6 +839,125 @@
             color: #cbd5e1;
             line-height: 1.6;
             margin-bottom: 10px;
+        }
+
+        /* Exchanges Section */
+        .exchanges {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+        }
+
+        .exchanges-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .exchanges-subtitle {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .exchanges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .exchange-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.9));
+            border: 2px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exchange-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(118, 185, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .exchange-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: #76B900;
+            box-shadow: 0 30px 60px rgba(118, 185, 0, 0.3);
+        }
+
+        .exchange-card:hover::before {
+            opacity: 1;
+        }
+
+        .exchange-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: brightness(0.9);
+            transition: all 0.4s;
+        }
+
+        .exchange-card:hover .exchange-logo img {
+            filter: brightness(1.2) drop-shadow(0 0 20px rgba(118, 185, 0, 0.5));
+            transform: scale(1.1);
+        }
+
+        .exchange-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-status {
+            display: inline-block;
+            background: linear-gradient(135deg, #76B900, #5a8c00);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-status::before {
+            content: '✓';
+            margin-right: 5px;
+        }
+
+        .exchanges-note {
+            margin-top: 50px;
+            padding: 25px;
+            background: rgba(118, 185, 0, 0.05);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 15px;
+            color: #cbd5e1;
+        }
+
+        .exchanges-note strong {
+            color: #76B900;
         }
     </style>
 </head>
@@ -972,6 +1263,71 @@
                     <p><strong>🐋 Baleias Comprando + CVD Verde:</strong> Confirmação forte de pressão compradora</p>
                     <p><strong>ADX > 25:</strong> Mercado em tendência - sinais mais confiáveis</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="exchanges">
+        <div class="container">
+            <h2 class="section-title">🤝 Compatível com as Principais Exchanges</h2>
+            <p class="exchanges-subtitle">
+                Nosso indicador funciona perfeitamente em todas as principais plataformas de trading
+            </p>
+
+            <div class="exchanges-grid">
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 126.61 126.61'%3E%3Cg fill='%23F3BA2F'%3E%3Cpath d='M38.73 53.2l24.59-24.58 24.6 24.6 14.3-14.31L63.32 0 24.42 38.9l14.31 14.3z'/%3E%3Cpath d='M0 63.31l14.3-14.3 14.31 14.3-14.3 14.3zM38.73 73.41l24.59 24.59 24.6-24.6 14.31 14.29-38.9 38.91-38.91-38.88 14.31-14.31z'/%3E%3Cpath d='M98 63.31l14.3-14.3 14.31 14.3-14.3 14.3z'/%3E%3Cpath d='M77.83 63.3L63.32 48.78 52.16 59.94l-1.45 1.45-1.42 1.42 14.03 14.03 14.51-14.52.01-.02z'/%3E%3C/g%3E%3C/svg%3E" alt="Binance">
+                    </div>
+                    <div class="exchange-name">Binance</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='bybit' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F7A600;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF6B00;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='90' fill='url(%23bybit)'/%3E%3Cpath d='M60 80 L100 50 L140 80 L140 120 L100 150 L60 120 Z' fill='%23000' opacity='0.2'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='80' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Bybit">
+                    </div>
+                    <div class="exchange-name">Bybit</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='mexc' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300D4FF;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230066FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23mexc)' rx='30'/%3E%3Cpath d='M50 140 L50 60 L80 90 L110 60 L140 90 L150 80 L150 140 L140 140 L140 100 L110 130 L80 100 L60 120 L60 140 Z' fill='white'/%3E%3C/svg%3E" alt="MEXC">
+                    </div>
+                    <div class="exchange-name">MEXC</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='okx' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23000000;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23333333;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23okx)' rx='30'/%3E%3Crect x='40' y='40' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='115' y='40' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='40' y='115' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='115' y='115' width='45' height='45' fill='white' rx='5'/%3E%3C/svg%3E" alt="OKX">
+                    </div>
+                    <div class="exchange-name">OKX</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='kucoin' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2323AF91;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2318816C;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23kucoin)' rx='30'/%3E%3Cpath d='M100 40 L140 70 L140 130 L100 160 L60 130 L60 70 Z' fill='white'/%3E%3Cpath d='M100 60 L85 75 L100 90 L115 75 Z' fill='%2323AF91'/%3E%3Cpath d='M100 110 L85 125 L100 140 L115 125 Z' fill='%2323AF91'/%3E%3Cpath d='M70 100 L85 85 L85 115 Z' fill='%2323AF91'/%3E%3Cpath d='M130 100 L115 85 L115 115 Z' fill='%2323AF91'/%3E%3C/svg%3E" alt="KuCoin">
+                    </div>
+                    <div class="exchange-name">KuCoin</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='bitget' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F0FF;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230080FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='90' fill='url(%23bitget)'/%3E%3Crect x='70' y='60' width='60' height='20' fill='white' rx='10'/%3E%3Crect x='70' y='90' width='35' height='20' fill='white' rx='10'/%3E%3Crect x='70' y='120' width='60' height='20' fill='white' rx='10'/%3E%3C/svg%3E" alt="Bitget">
+                    </div>
+                    <div class="exchange-name">Bitget</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+            </div>
+
+            <div class="exchanges-note">
+                <strong>💡 TradingView Integration:</strong> Nosso indicador funciona através do TradingView, 
+                permitindo que você use em qualquer exchange que tenha dados disponíveis na plataforma. 
+                Além das listadas acima, também funciona com <strong>Coinbase, Kraken, Gate.io, Huobi</strong> e muitas outras!
             </div>
         </div>
     </section>
