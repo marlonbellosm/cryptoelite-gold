@@ -1,4 +1,326 @@
-/* Pricing */
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoElite10 Gold - Indicador Premium TradingView</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #76B900;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #76B900, #a3d977);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(118, 185, 0, 0.5));
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #76B900, #5a8c00);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(118, 185, 0, 0.4);
+            border-color: #a3d977;
+        }
+
+        .whatsapp-button {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            border-color: #25D366;
+        }
+
+        /* Botão flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 32px;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #76B900, #a3d977, #c4e89d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(20deg); }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #76B900;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #76B900;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.8));
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(118, 185, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #76B900;
+            box-shadow: 0 20px 40px rgba(118, 185, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #a3d977;
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #76B900, #5a8c00);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(118, 185, 0, 0.4);
+        }
+
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #a3d977;
+        }
+
+        .step p {
+            color: #94a3b8;
+        }
+
+        /* Color System */
+        .color-system {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .colors {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .color-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            min-width: 200px;
+            transition: all 0.3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-blue {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .color-yellow {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .color-red {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .color-emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .color-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Pricing */
         .pricing {
             padding: 80px 0;
         }
@@ -12,7 +334,6 @@
             border: 2px solid #76B900;
             text-align: center;
             box-shadow: 0 20px 60px rgba(118, 185, 0, 0.3);
-            position: relative;
         }
 
         .price-card h3 {
@@ -21,58 +342,1075 @@
             margin-bottom: 20px;
         }
 
-        .black-friday-badge {
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            background: linear-gradient(135deg, #FF0000, #CC0000);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.5);
-            animation: bounce 2s infinite;
-            z-index: 10;
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0) rotate(-5deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(-5deg);
-            }
-        }
-
-        .price-container {
-            margin: 30px 0;
-        }
-
-        .price-old {
-            font-size: 32px;
-            color: #94a3b8;
-            text-decoration: line-through;
-            margin-bottom: 10px;
-        }
-
         .price {
             font-size: 64px;
             font-weight: bold;
             color: #76B900;
+            margin: 30px 0;
         }
 
-        .promo-info {
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(204, 0, 0, 0.1));
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
+        .price-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            color: #cbd5e1;
+        }
+
+        .price-features li:before {
+            content: "✅ ";
+            margin-right: 10px;
+            filter: hue-rotate(60deg);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        .email {
+            color: #76B900;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .email:hover {
+            color: #a3d977;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 2px solid #76B900;
+        }
+
+        footer p {
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .whatsapp-button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .header-content {
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .colors {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .color-box {
+                width: 100%;
+            }
+
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-container {
+                padding: 25px 15px;
+            }
+
+            .panel-header h3 {
+                font-size: 24px;
+            }
+
+            .decision-example {
+                padding: 20px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exchanges-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .exchange-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .exchange-name {
+                font-size: 16px;
+            }
+
+            .exchanges-note {
+                padding: 20px;
+                font-size: 14px;
+            }
+
+            .price-card {
+                padding: 30px 20px;
+            }
+
+            .price {
+                font-size: 48px;
+            }
+
+            .price-features {
+                font-size: 14px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            section {
+                padding: 60px 0 !important;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+
+            .step h3 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .logo img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .whatsapp-button {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .exchanges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .panel-header h3 {
+                font-size: 20px;
+            }
+
+            .panel-item-value {
+                font-size: 16px;
+            }
+
+            .price {
+                font-size: 42px;
+            }
+
+            .result-profit {
+                font-size: 24px;
+            }
+
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(16, 185, 129, 0.05));
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .result-card:hover {
+            transform: translateY(-10px);
+            border-color: #10b981;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .result-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .result-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-top: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .result-profit {
+            font-size: 28px;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .result-leverage {
+            font-size: 16px;
+            color: #94a3b8;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .about-stat {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .about-stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #76B900, #a3d977);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-stat-label {
+            color: #94a3b8;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        /* Decision Panel */
+        .decision-panel {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.95);
+        }
+
+        .panel-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(0, 0, 0, 0.95));
+            border: 2px solid #76B900;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(118, 185, 0, 0.3);
+        }
+
+        .panel-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .panel-header h3 {
+            font-size: 32px;
+            color: #76B900;
+            margin-bottom: 10px;
+        }
+
+        .panel-status {
+            display: inline-block;
+            background: linear-gradient(135deg, #76B900, #5a8c00);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
             font-size: 14px;
-            color: #fbbf24;
             font-weight: bold;
         }
 
-        .promo-info .emoji {
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .panel-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(118, 185, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .panel-item:hover {
+            border-color: #76B900;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(118, 185, 0, 0.2);
+        }
+
+        .panel-item-label {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .panel-item-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-green {
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .status-yellow {
+            background: #fbbf24;
+            box-shadow: 0 0 10px #fbbf24;
+        }
+
+        .status-red {
+            background: #ef4444;
+            box-shadow: 0 0 10px #ef4444;
+        }
+
+        .status-gray {
+            background: #6b7280;
+        }
+
+        .emoji-large {
+            font-size: 24px;
+        }
+
+        .decision-example {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(118, 185, 0, 0.05);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .decision-example h4 {
+            color: #a3d977;
+            margin-bottom: 15px;
             font-size: 18px;
         }
+
+        .decision-example p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        /* Exchanges Section */
+        .exchanges {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 20, 0.9));
+        }
+
+        .exchanges-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .exchanges-subtitle {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .exchanges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .exchange-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.9));
+            border: 2px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exchange-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(118, 185, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .exchange-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: #76B900;
+            box-shadow: 0 30px 60px rgba(118, 185, 0, 0.3);
+        }
+
+        .exchange-card:hover::before {
+            opacity: 1;
+        }
+
+        .exchange-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: brightness(0.9);
+            transition: all 0.4s;
+        }
+
+        .exchange-card:hover .exchange-logo img {
+            filter: brightness(1.2) drop-shadow(0 0 20px rgba(118, 185, 0, 0.5));
+            transform: scale(1.1);
+        }
+
+        .exchange-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-status {
+            display: inline-block;
+            background: linear-gradient(135deg, #76B900, #5a8c00);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .exchange-status::before {
+            content: '✓';
+            margin-right: 5px;
+        }
+
+        .exchanges-note {
+            margin-top: 50px;
+            padding: 25px;
+            background: rgba(118, 185, 0, 0.05);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 15px;
+            color: #cbd5e1;
+        }
+
+        .exchanges-note strong {
+            color: #76B900;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='goldGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1' /%3E%3Cstop offset='50%25' style='stop-color:%23FFA500;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF8C00;stop-opacity:1' /%3E%3C/linearGradient%3E%3ClinearGradient id='greenGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2376B900;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%235a8c00;stop-opacity:1' /%3E%3C/linearGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='2' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3C!-- Outer green ring with glow --%3E%3Ccircle cx='100' cy='100' r='88' fill='none' stroke='url(%23greenGrad)' stroke-width='10' filter='url(%23glow)'/%3E%3Ccircle cx='100' cy='100' r='88' fill='none' stroke='%23FFD700' stroke-width='3' opacity='0.6'/%3E%3C!-- Inner dark circle --%3E%3Ccircle cx='100' cy='100' r='75' fill='%23000'/%3E%3C!-- Bitcoin symbol with gold gradient --%3E%3Ctext x='100' y='125' font-family='Arial, sans-serif' font-size='95' font-weight='bold' fill='url(%23goldGrad)' text-anchor='middle' filter='url(%23glow)'%3E₿%3C/text%3E%3C!-- Growth arrow --%3E%3Cpath d='M 145 60 L 155 60 L 155 45 L 170 60 L 155 75 L 155 60 Z' fill='url(%23greenGrad)' filter='url(%23glow)'/%3E%3Cpath d='M 140 65 Q 130 70, 125 80' stroke='url(%23greenGrad)' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C!-- Chart bars at bottom --%3E%3Crect x='40' y='155' width='18' height='35' fill='url(%23greenGrad)' rx='3' filter='url(%23glow)'/%3E%3Crect x='65' y='145' width='18' height='45' fill='url(%23greenGrad)' rx='3' filter='url(%23glow)'/%3E%3Crect x='90' y='138' width='18' height='52' fill='url(%23greenGrad)' rx='3' filter='url(%23glow)'/%3E%3Crect x='115' y='130' width='18' height='60' fill='url(%23greenGrad)' rx='3' filter='url(%23glow)'/%3E%3Crect x='140' y='120' width='18' height='70' fill='url(%23greenGrad)' rx='3' filter='url(%23glow)'/%3E%3C/svg%3E" alt="CryptoElite Logo">
+                    <span>CryptoElite10 Gold</span>
+                </div>
+                <a href="https://chat.whatsapp.com/JyjKtrpEwiK1sG9ZWCEtUX" target="_blank" class="whatsapp-button">
+                    💬 Entrar na Comunidade
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="floating">CryptoElite10 Gold</h1>
+            <p>O Indicador Premium que Transforma sua Operação</p>
+            <a href="https://chat.whatsapp.com/JyjKtrpEwiK1sG9ZWCEtUX" target="_blank" class="whatsapp-button" style="font-size: 20px; padding: 15px 40px;">
+                💬 ENTRAR NA COMUNIDADE
+            </a>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Precisão</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Monitoramento</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Indicadores</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre a CryptoElite10</h2>
+            <div class="about-content">
+                <p>
+                    A <strong>CryptoElite10</strong> é uma comunidade exclusiva de traders profissionais que utilizam tecnologia de ponta para identificar as melhores oportunidades do mercado crypto.
+                </p>
+                <p>
+                    Nosso indicador <strong>CryptoElite10 Gold</strong> foi desenvolvido após anos de análise e otimização, combinando múltiplos algoritmos avançados para entregar sinais precisos e confiáveis.
+                </p>
+                <p>
+                    Junte-se a centenas de traders que já transformaram seus resultados com nossa metodologia comprovada.
+                </p>
+
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="about-stat-number">500+</div>
+                        <div class="about-stat-label">Traders Ativos</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">R$ 2M+</div>
+                        <div class="about-stat-label">Em Lucros Gerados</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">4.9/5</div>
+                        <div class="about-stat-label">Avaliação Média</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results">
+        <div class="container">
+            <h2 class="section-title">Resultados Reais dos Nossos Alunos</h2>
+            <p style="text-align: center; color: #94a3b8; font-size: 18px; margin-bottom: 40px;">
+                Veja alguns dos trades realizados com o CryptoElite10 Gold
+            </p>
+            <div class="results-grid">
+                <div class="result-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600' viewBox='0 0 400 600'%3E%3Crect fill='%231a1f3a' width='400' height='600'/%3E%3Ctext x='50%25' y='20%25' font-family='Arial' font-size='32' fill='white' text-anchor='middle' font-weight='bold'%3EBRETTUSDT%3C/text%3E%3Ctext x='50%25' y='30%25' font-family='Arial' font-size='18' fill='%2310b981' text-anchor='middle'%3ELong 4x%3C/text%3E%3Ctext x='50%25' y='45%25' font-family='Arial' font-size='64' fill='%2310b981' text-anchor='middle' font-weight='bold'%3E+13.48%25%3C/text%3E%3Ctext x='50%25' y='55%25' font-family='Arial' font-size='28' fill='%2310b981' text-anchor='middle'%3E+29.32 USDT%3C/text%3E%3Ctext x='30%25' y='75%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço entrada: $0.04277%3C/text%3E%3Ctext x='30%25' y='82%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço fecho: $0.04426%3C/text%3E%3Ctext x='50%25' y='95%25' font-family='Arial' font-size='12' fill='%23475569' text-anchor='middle'%3ECompartilhado em 2025-06-29%3C/text%3E%3C/svg%3E" alt="Trade BRETTUSDT">
+                    <div class="result-info">
+                        <div>
+                            <div class="result-profit">+13.48%</div>
+                            <div style="color: #10b981; font-size: 16px;">+29.32 USDT</div>
+                        </div>
+                        <div class="result-leverage">Long 4x</div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600' viewBox='0 0 400 600'%3E%3Crect fill='%231a1f3a' width='400' height='600'/%3E%3Ctext x='50%25' y='20%25' font-family='Arial' font-size='32' fill='white' text-anchor='middle' font-weight='bold'%3ENEARUSDT%3C/text%3E%3Ctext x='50%25' y='30%25' font-family='Arial' font-size='18' fill='%2310b981' text-anchor='middle'%3ELong 3x%3C/text%3E%3Ctext x='50%25' y='45%25' font-family='Arial' font-size='64' fill='%2310b981' text-anchor='middle' font-weight='bold'%3E+28.75%25%3C/text%3E%3Ctext x='50%25' y='55%25' font-family='Arial' font-size='28' fill='%2310b981' text-anchor='middle'%3E+14.03 USDT%3C/text%3E%3Ctext x='30%25' y='75%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço entrada: $2.815%3C/text%3E%3Ctext x='30%25' y='82%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço fecho: $3.088%3C/text%3E%3Ctext x='50%25' y='95%25' font-family='Arial' font-size='12' fill='%23475569' text-anchor='middle'%3ECompartilhado em 2025-05-22%3C/text%3E%3C/svg%3E" alt="Trade NEARUSDT">
+                    <div class="result-info">
+                        <div>
+                            <div class="result-profit">+28.75%</div>
+                            <div style="color: #10b981; font-size: 16px;">+14.03 USDT</div>
+                        </div>
+                        <div class="result-leverage">Long 3x</div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600' viewBox='0 0 400 600'%3E%3Crect fill='%231a1f3a' width='400' height='600'/%3E%3Ctext x='50%25' y='20%25' font-family='Arial' font-size='32' fill='white' text-anchor='middle' font-weight='bold'%3ESOLUSDT%3C/text%3E%3Ctext x='50%25' y='30%25' font-family='Arial' font-size='18' fill='%2310b981' text-anchor='middle'%3ELong 10x%3C/text%3E%3Ctext x='50%25' y='45%25' font-family='Arial' font-size='64' fill='%2310b981' text-anchor='middle' font-weight='bold'%3E+6.37%25%3C/text%3E%3Ctext x='50%25' y='55%25' font-family='Arial' font-size='28' fill='%2310b981' text-anchor='middle'%3E+11.53 USDT%3C/text%3E%3Ctext x='30%25' y='75%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço entrada: $151.98%3C/text%3E%3Ctext x='30%25' y='82%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço fecho: $152.95%3C/text%3E%3Ctext x='50%25' y='95%25' font-family='Arial' font-size='12' fill='%23475569' text-anchor='middle'%3ECompartilhado em 2025-07-02%3C/text%3E%3C/svg%3E" alt="Trade SOLUSDT">
+                    <div class="result-info">
+                        <div>
+                            <div class="result-profit">+6.37%</div>
+                            <div style="color: #10b981; font-size: 16px;">+11.53 USDT</div>
+                        </div>
+                        <div class="result-leverage">Long 10x</div>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='600' viewBox='0 0 400 600'%3E%3Crect fill='%231a1f3a' width='400' height='600'/%3E%3Ctext x='50%25' y='20%25' font-family='Arial' font-size='32' fill='white' text-anchor='middle' font-weight='bold'%3EBRETTUSDT%3C/text%3E%3Ctext x='50%25' y='30%25' font-family='Arial' font-size='18' fill='%23ef4444' text-anchor='middle'%3EShort 5x%3C/text%3E%3Ctext x='50%25' y='45%25' font-family='Arial' font-size='64' fill='%2310b981' text-anchor='middle' font-weight='bold'%3E+27.23%25%3C/text%3E%3Ctext x='50%25' y='55%25' font-family='Arial' font-size='28' fill='%2310b981' text-anchor='middle'%3E+26.75 USDT%3C/text%3E%3Ctext x='30%25' y='75%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço entrada: $0.06298%3C/text%3E%3Ctext x='30%25' y='82%25' font-family='Arial' font-size='14' fill='%2394a3b8' text-anchor='start'%3EPreço fecho: $0.06641%3C/text%3E%3Ctext x='50%25' y='95%25' font-family='Arial' font-size='12' fill='%23475569' text-anchor='middle'%3ECompartilhado em 2025-07-22%3C/text%3E%3C/svg%3E" alt="Trade BRETTUSDT Short">
+                    <div class="result-info">
+                        <div>
+                            <div class="result-profit">+27.23%</div>
+                            <div style="color: #10b981; font-size: 16px;">+26.75 USDT</div>
+                        </div>
+                        <div class="result-leverage" style="background: rgba(239, 68, 68, 0.1);">Short 5x</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #94a3b8; margin-top: 40px; font-size: 14px;">
+                ⚠️ Resultados passados não garantem lucros futuros. Trading envolve riscos.
+            </p>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Recursos Premium</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Sistema Visual Intuitivo</h3>
+                    <p>Cores simples que indicam exatamente quando COMPRAR, AGUARDAR ou VENDER. Sem complicações.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Sinais Precisos</h3>
+                    <p>Algoritmo avançado que filtra ruídos do mercado e entrega apenas os melhores momentos de entrada.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Análise em Tempo Real</h3>
+                    <p>Monitoramento contínuo do mercado para você nunca perder uma oportunidade lucrativa.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🐋</div>
+                    <h3>Movimentações Inteligentes</h3>
+                    <p>Identifica os melhores pontos de entrada seguindo o fluxo do dinheiro profissional.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Análise Profissional</h3>
+                    <p>Tecnologia de ponta que simplifica o trading e coloca você na direção certa do mercado.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Painel Completo</h3>
+                    <p>Todas as informações essenciais em um único painel visual. Tudo que você precisa para operar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="color-system">
+        <div class="container">
+            <h2 class="section-title">Sistema de Cores Simples</h2>
+            <div class="colors">
+                <div class="color-box color-blue">
+                    <div class="color-emoji">🔵</div>
+                    <h3>AZUL</h3>
+                    <p>Momento de COMPRAR<br>Tendência de alta forte</p>
+                </div>
+
+                <div class="color-box color-yellow">
+                    <div class="color-emoji">🟡</div>
+                    <h3>AMARELO</h3>
+                    <p>ALERTA de reversão<br>Perda de força</p>
+                </div>
+
+                <div class="color-box color-red">
+                    <div class="color-emoji">🔴</div>
+                    <h3>VERMELHO</h3>
+                    <p>Momento de VENDER<br>Tendência de baixa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="decision-panel">
+        <div class="container">
+            <h2 class="section-title">📊 Painel de Controle em Tempo Real</h2>
+            <p style="text-align: center; color: #94a3b8; font-size: 18px; margin-bottom: 40px;">
+                Veja todas as informações essenciais em um único painel para tomar decisões assertivas
+            </p>
+
+            <div class="panel-container">
+                <div class="panel-header">
+                    <h3>📊 PAINEL DE CONTROLE</h3>
+                    <span class="panel-status">✅ ATIVO</span>
+                </div>
+
+                <div class="panel-grid">
+                    <div class="panel-item">
+                        <div class="panel-item-label">EMA Status</div>
+                        <div class="panel-item-value">
+                            <span class="status-indicator status-green"></span>
+                            <span class="emoji-large">🔵</span>
+                            AZUL (BULLISH)
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">Posição Sugerida</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">💎</span>
+                            LONG ATIVO
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">Qualidade Cruzamento</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">✅</span>
+                            FORTE
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">ADX (Força Tendência)</div>
+                        <div class="panel-item-value">
+                            <span class="status-indicator status-green"></span>
+                            32.5 ✓
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">RSI (14)</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">•</span>
+                            58.3
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">MACD</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">📈</span>
+                            BULLISH
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">Baleias</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">🐋💚</span>
+                            COMPRANDO
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">CVD (Volume)</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">🟢🔥</span>
+                            FORTE COMPRA
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">Status Mercado</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">💪</span>
+                            TENDÊNCIA FORTE
+                        </div>
+                    </div>
+
+                    <div class="panel-item">
+                        <div class="panel-item-label">Distância EMA/HMA</div>
+                        <div class="panel-item-value">
+                            <span class="emoji-large">↑</span>
+                            +2.45%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decision-example">
+                    <h4>💡 Como Interpretar o Painel:</h4>
+                    <p><strong>🔵 EMA AZUL + Cruzamento FORTE:</strong> Momento ideal para entrada em LONG</p>
+                    <p><strong>🟡 EMA AMARELA:</strong> Atenção! Possível reversão - considere proteger lucros</p>
+                    <p><strong>🔴 EMA VERMELHA:</strong> Evite LONGs - considere SHORT ou fique fora</p>
+                    <p><strong>🐋 Baleias Comprando + CVD Verde:</strong> Confirmação forte de pressão compradora</p>
+                    <p><strong>ADX > 25:</strong> Mercado em tendência - sinais mais confiáveis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="exchanges">
+        <div class="container">
+            <h2 class="section-title">🤝 Compatível com as Principais Exchanges</h2>
+            <p class="exchanges-subtitle">
+                Nosso indicador funciona perfeitamente em todas as principais plataformas de trading
+            </p>
+
+            <div class="exchanges-grid">
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 126.61 126.61'%3E%3Cg fill='%23F3BA2F'%3E%3Cpath d='M38.73 53.2l24.59-24.58 24.6 24.6 14.3-14.31L63.32 0 24.42 38.9l14.31 14.3z'/%3E%3Cpath d='M0 63.31l14.3-14.3 14.31 14.3-14.3 14.3zM38.73 73.41l24.59 24.59 24.6-24.6 14.31 14.29-38.9 38.91-38.91-38.88 14.31-14.31z'/%3E%3Cpath d='M98 63.31l14.3-14.3 14.31 14.3-14.3 14.3z'/%3E%3Cpath d='M77.83 63.3L63.32 48.78 52.16 59.94l-1.45 1.45-1.42 1.42 14.03 14.03 14.51-14.52.01-.02z'/%3E%3C/g%3E%3C/svg%3E" alt="Binance">
+                    </div>
+                    <div class="exchange-name">Binance</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='bybit' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F7A600;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FF6B00;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='90' fill='url(%23bybit)'/%3E%3Cpath d='M60 80 L100 50 L140 80 L140 120 L100 150 L60 120 Z' fill='%23000' opacity='0.2'/%3E%3Ctext x='100' y='120' font-family='Arial' font-size='80' font-weight='bold' fill='white' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" alt="Bybit">
+                    </div>
+                    <div class="exchange-name">Bybit</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='mexc' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300D4FF;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230066FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23mexc)' rx='30'/%3E%3Cpath d='M50 140 L50 60 L80 90 L110 60 L140 90 L150 80 L150 140 L140 140 L140 100 L110 130 L80 100 L60 120 L60 140 Z' fill='white'/%3E%3C/svg%3E" alt="MEXC">
+                    </div>
+                    <div class="exchange-name">MEXC</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='okx' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23000000;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23333333;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23okx)' rx='30'/%3E%3Crect x='40' y='40' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='115' y='40' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='40' y='115' width='45' height='45' fill='white' rx='5'/%3E%3Crect x='115' y='115' width='45' height='45' fill='white' rx='5'/%3E%3C/svg%3E" alt="OKX">
+                    </div>
+                    <div class="exchange-name">OKX</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='kucoin' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2323AF91;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2318816C;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23kucoin)' rx='30'/%3E%3Cpath d='M100 40 L140 70 L140 130 L100 160 L60 130 L60 70 Z' fill='white'/%3E%3Cpath d='M100 60 L85 75 L100 90 L115 75 Z' fill='%2323AF91'/%3E%3Cpath d='M100 110 L85 125 L100 140 L115 125 Z' fill='%2323AF91'/%3E%3Cpath d='M70 100 L85 85 L85 115 Z' fill='%2323AF91'/%3E%3Cpath d='M130 100 L115 85 L115 115 Z' fill='%2323AF91'/%3E%3C/svg%3E" alt="KuCoin">
+                    </div>
+                    <div class="exchange-name">KuCoin</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+
+                <div class="exchange-card">
+                    <div class="exchange-logo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='bitget' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2300F0FF;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%230080FF;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='100' cy='100' r='90' fill='url(%23bitget)'/%3E%3Crect x='70' y='60' width='60' height='20' fill='white' rx='10'/%3E%3Crect x='70' y='90' width='35' height='20' fill='white' rx='10'/%3E%3Crect x='70' y='120' width='60' height='20' fill='white' rx='10'/%3E%3C/svg%3E" alt="Bitget">
+                    </div>
+                    <div class="exchange-name">Bitget</div>
+                    <div class="exchange-status">Compatível</div>
+                </div>
+            </div>
+
+            <div class="exchanges-note">
+                <strong>💡 TradingView Integration:</strong> Nosso indicador funciona através do TradingView, 
+                permitindo que você use em qualquer exchange que tenha dados disponíveis na plataforma. 
+                Além das listadas acima, também funciona com <strong>Coinbase, Kraken, Gate.io, Huobi</strong> e muitas outras!
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Adquira o Acesso</h3>
+                    <p>Entre em contato e receba suas credenciais de acesso premium</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure no TradingView</h3>
+                    <p>Adicione o indicador em qualquer gráfico do TradingView</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Opere com Confiança</h3>
+                    <p>Siga as cores e sinais para tomar decisões mais assertivas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="preco">
+        <div class="container">
+            <h2 class="section-title">Investimento</h2>
+            <div class="price-card">
+                <h3>🏆 Acesso Premium</h3>
+                <div class="price">$ 14.99/mês</div>
+                <p style="color: #94a3b8; margin-bottom: 30px;">Assinatura Mensal • Cancele quando quiser</p>
+                
+                <ul class="price-features">
+                    <li>Indicador CryptoElite10 Gold completo</li>
+                    <li>Sistema de cores intuitivo</li>
+                    <li>Sinais de alta precisão</li>
+                    <li>Análise em tempo real</li>
+                    <li>Painel de controle completo</li>
+                    <li>Alertas personalizados</li>
+                    <li>Suporte via email</li>
+                    <li>Atualizações incluídas</li>
+                </ul>
+
+                <a href="https://wa.me/qr/G4MXIRAX7XFUN1" target="_blank" class="whatsapp-button" style="display: inline-block; margin-top: 30px; font-size: 18px;">
+                    💬 ASSINAR AGORA - $14.99/mês
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title">Entre em Contato</h2>
+            <p style="color: #cbd5e1; font-size: 20px; margin-bottom: 30px;">
+                Pronto para elevar suas operações ao próximo nível?
+            </p>
+            <a href="https://chat.whatsapp.com/JyjKtrpEwiK1sG9ZWCEtUX" target="_blank" class="whatsapp-button" style="font-size: 18px; padding: 15px 40px; margin-bottom: 30px;">
+                💬 ENTRAR NO WHATSAPP
+            </a>
+            <div class="contact-info">
+                📧 <a href="mailto:marlonbello7532@gmail.com" class="email">marlonbello7532@gmail.com</a>
+            </div>
+            <p style="color: #94a3b8; margin-top: 30px;">
+                Respondo em até 24 horas
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CryptoElite10 Gold. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 14px;">Trading envolve riscos. Opere com responsabilidade.</p>
+        </div>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://chat.whatsapp.com/JyjKtrpEwiK1sG9ZWCEtUX" target="_blank" class="whatsapp-float" title="Entrar na Comunidade">
+        💬
+    </a>
+</body>
+</html>
